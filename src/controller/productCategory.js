@@ -32,7 +32,7 @@ const GetAllProductCategory=async function(req,res){
 
   try {
     
-    const pc= await db.query("SELECT*FROM ProductCategory");
+    const [pc]= await db.query("SELECT*FROM ProductCategory");
     res.status(200).json({
       status: 'success',
       data: pc
@@ -48,13 +48,13 @@ const GetAllProductCategory=async function(req,res){
 //update product category
 const UpdateProductCategory=async function(req,res){
 
-const { id } = req.params;
-  const { name } = req.body;
+const id  = req.params;
+  const  name  = req.body;
   try {
-    const updateproductCategory = await db.query("UPDATE ProductCategory SET name=$1 WHERE id=$2",[name,id]);
+    const updateproductCategory = await db.query("UPDATE ProductCategory SET name=? WHERE id=?",[name,id]);
     res.status(200).json({
       status: 'success',
-      data: updateproductCategory
+      message:` successfully updated`
     });
   } catch (err) {
     res.status(400).json({

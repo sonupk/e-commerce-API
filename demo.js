@@ -2,7 +2,7 @@
 // You have to create api endpoints for GET, POST, DELETE and PUT functions.
 
 // Details:
-// - Product table should contain the following columns:
+// // - Product table should contain the following columns:
 //   - Name
 //   - Price
 //   - Vendor (ForeignKey relationship)

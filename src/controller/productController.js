@@ -7,7 +7,7 @@ const db = mysql.createConnection({
   }).promise()
   
   
-  
+  // CREATE PRODUCT
   const createProduct=async function (req,res) {
     const {
            name, price, vendor_id, category_id, variations, attributes} = req.body;
@@ -23,12 +23,9 @@ const db = mysql.createConnection({
     }
   }
   
-
-        //Get all product
+//Get all product
 const GetAllProduct=async function(req,res){
-
-  try {
-    
+ try {
     const [p]= await db.query("SELECT*FROM Product");
     res.status(200).json({
       status: 'success',
@@ -41,8 +38,8 @@ const GetAllProduct=async function(req,res){
     });
   }
 };
-// Update Product
 
+// Update Product
 const updateProduct=async function (req,res){
   const {id, name, price, vendor_id, category_id, variations, attributes}=req.body
   try {
@@ -56,9 +53,6 @@ const updateProduct=async function (req,res){
     });
   }
 }
-
-
-
 
 module.exports.createProduct=createProduct
 module.exports.GetAllProduct=GetAllProduct

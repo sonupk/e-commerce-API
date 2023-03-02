@@ -6,18 +6,14 @@ const db = mysql.createConnection({
     database: "ecommerce"
   }).promise()
   
-// Vendor Category API
+// Create Vendor Category 
 const createVendorCategory=async function(req,res){
-
 const { name } = req.body;
   try {
     const newVendorCategory = await db.query(
       `INSERT INTO VendorCategory (name) VALUES(?) `,
       [name]
     );
-
-      
-
 res.status(201).json({
       status: 'success',
       data: newVendorCategory
@@ -32,9 +28,7 @@ res.status(201).json({
 
 // Get all vendor categories
 const GetAllVendorCategory=async function(req,res){
-
-  try {
-    
+try {
     const [vc]= await db.query("SELECT*FROM VendorCategory");
     res.status(200).json({
       status: 'success',
@@ -48,9 +42,8 @@ const GetAllVendorCategory=async function(req,res){
   }
 };
 
-//update product category
+//update vendor category
 const UpdateVendorCategory=async function(req,res){
-
 const id  = req.params;
   const  name  = req.body;
   try {
@@ -66,9 +59,6 @@ const id  = req.params;
     });
   }
 }
-
-
-
 
 module.exports.createVendorCategory=createVendorCategory
 module.exports.GetAllVendorCategory=GetAllVendorCategory

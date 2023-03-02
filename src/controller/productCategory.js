@@ -7,9 +7,8 @@ const db = mysql.createConnection({
     database: "ecommerce"
   }).promise()
   
-// Product Category API
+//  Create Product Category API
 const createProductCategory=async function(req,res){
-
 const { name } = req.body;
   try {
     const pc= await db.query(`INSERT INTO ProductCategory (name)
@@ -20,7 +19,7 @@ res.status(201).json({
       data: pc
     });
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       status: 'error',
       data: err.message
     });
@@ -29,16 +28,14 @@ res.status(201).json({
 
 // Get all product categories
 const GetAllProductCategory=async function(req,res){
-
-  try {
-    
+ try {
     const [pc]= await db.query("SELECT*FROM ProductCategory");
     res.status(200).json({
       status: 'success',
       data: pc
     });
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       status: 'error',
       data: err.message
     });
@@ -47,7 +44,6 @@ const GetAllProductCategory=async function(req,res){
 
 //update product category
 const UpdateProductCategory=async function(req,res){
-
 const id  = req.params;
   const  name  = req.body;
   try {
@@ -57,15 +53,12 @@ const id  = req.params;
       message:` successfully updated`
     });
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       status: 'error',
       data: err.message
     });
   }
 }
-
-
-
 
 module.exports.createProductCategory=createProductCategory
 module.exports.GetAllProductCategory=GetAllProductCategory

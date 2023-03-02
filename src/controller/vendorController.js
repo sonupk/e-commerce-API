@@ -6,7 +6,7 @@ const db = mysql.createConnection({
     database: "ecommerce"
   }).promise()
   
-// Vendor API
+//  Create Vendor 
 const createVendor=async function(req,res){
 const {
         name,phone,address,city, state,zip, country,type,category_id,gst_number} = req.body;
@@ -25,11 +25,10 @@ const {
         });
       }
     };
+
     //Get all vendor 
 const GetAllVendor=async function(req,res){
-
-  try {
-    
+try {
     const [v]= await db.query("SELECT*FROM Vendor");
     res.status(200).json({
       status: 'success',
@@ -43,6 +42,7 @@ const GetAllVendor=async function(req,res){
   }
 };
 
+// Update vendor
 const updateVendor=async function updateVendor(id, name, phone, address, city, state, zip, country, type, category_id, gst_number) {
   try {
     const vendor = await db.query('UPDATE Vendor SET name = ?, phone = ?, address = ?, city = ?, state = ?, zip = ?, country = ?, type = ?, category_id = ?, gst_number = ? WHERE id = ?',
@@ -56,10 +56,6 @@ const updateVendor=async function updateVendor(id, name, phone, address, city, s
   }
 }
 
-
-
-  
-    
 module.exports.createVendor=createVendor
 module.exports.GetAllVendor=GetAllVendor
 module.exports.updateVendor=updateVendor

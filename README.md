@@ -1,6 +1,7 @@
 # e-commerce-API
 
 step 1: using command Git Clone, and clone the github repo in new folder.
+
 step 2: using npm init command for creating package.json and package-lock.json files.
 step 3: using npm i ,installing express,nodemon,mysql,fs packages.
 step 4: Inside the Src folder create Controller, Routes,Index.js files.

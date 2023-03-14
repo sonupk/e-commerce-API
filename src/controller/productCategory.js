@@ -1,12 +1,12 @@
 
 const mysql= require('mysql2')
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Admin@123",
-    database: "ecommerce"
-  }).promise()
-  
+const db = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
+}).promise()
+
 //  Create Product Category API
 const createProductCategory=async function(req,res){
 const { name } = req.body;

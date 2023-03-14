@@ -1,10 +1,11 @@
 const mysql= require('mysql2')
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Admin@123",
-    database: "ecommerce"
-  }).promise()
+const db = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
+}).promise()
+
   
 // Create Vendor Category 
 const createVendorCategory=async function(req,res){
@@ -19,7 +20,7 @@ res.status(201).json({
       data: newVendorCategory
     });
   } catch (err) {
-    res.status(400).json({
+    res.status(500).json({
       status: 'error',
       data: err.message
     });
